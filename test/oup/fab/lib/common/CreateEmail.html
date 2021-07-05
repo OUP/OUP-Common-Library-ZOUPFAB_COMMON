@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>CreateEmail - oup.fab.lib.common.controls</title>
+    <base href="../../../../" />
+    <!--[if lte IE 9
+      ]><script type="text/javascript">
+        (function () {
+          var baseTag = document.getElementsByTagName("base")[0];
+          baseTag.href = baseTag.href;
+        })();
+      </script><!
+    [endif]-->
+    <!-- ********************************************************************** -->
+    <!-- SAPUI5 Bootstrap:                                                     -->
+    <!-- Extend the "libs" property if you like to import additional libraries  -->
+    <!-- ********************************************************************** -->
+    <script
+      id="sap-ui-bootstrap"
+      src="/resources/sap-ui-core.js"
+      type="text/javascript"
+      data-sap-ui-async="true"
+      data-sap-ui-oninit="module:local/CreateEmail"
+      data-sap-ui-libs="oup.fab.lib.common"
+      data-sap-ui-theme="sap_fiori_3"
+      data-sap-ui-resourceroots='{"local" : "./test-resources/oup/fab/lib/common/"}'
+    ></script>
+
+    <!-- <script type="text/javascript">
+      var oControl = new oup.fab.lib.common.controls.CreateEmail({
+        appID: "PRR",
+      });
+
+      var oPage = new sap.m.Page({
+        content: oControl,
+      });
+
+      var oShell = new sap.m.Shell({
+        app: oPage,
+      });
+
+      oShell.placeAt("content");
+    </script> -->
+  </head>
+  <body class="sapUiBody" role="application">
+    <h1 id="header">
+      Test Page for <code>oup.fab.lib.common.controls.CreateEmail</code>
+    </h1>
+    <div id="content"></div>
+  </body>
+</html>

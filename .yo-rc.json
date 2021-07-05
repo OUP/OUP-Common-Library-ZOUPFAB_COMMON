@@ -1,0 +1,16 @@
+{
+  "generator-ui5-library": {
+    "libraryname": "common",
+    "namespace": "oup.fab.lib",
+    "framework": "SAPUI5",
+    "frameworkVersion": "1.77.0",
+    "author": "BHASKARS",
+    "newdir": false,
+    "namespaceURI": "oup/fab/lib",
+    "librarynamespace": "oup.fab.lib.common",
+    "librarynamespaceURI": "oup/fab/lib/common",
+    "librarybasepath": "../../../../",
+    "frameworklowercase": "sapui5",
+    "setupCompleted": true
+  }
+}

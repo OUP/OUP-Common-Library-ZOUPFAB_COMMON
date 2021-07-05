@@ -1,0 +1,37 @@
+{
+  "name": "common",
+  "version": "1.1.0",
+  "private": true,
+  "devDependencies": {
+    "@sap/ux-ui5-tooling": "^1.2.0",
+    "@ui5/cli": "^2.11.2",
+    "karma": "^6.1.1",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-cli": "^2.0.0",
+    "karma-ui5": "^2.3.3",
+    "nwabap-ui5uploader": "^1.1.0",
+    "rimraf": "3.0.2",
+    "ui5-middleware-livereload": "^0.5.1"
+  },
+  "ui5": {
+    "dependencies": [
+      "@sap/ux-ui5-tooling",
+      "ui5-middleware-livereload"
+    ]
+  },
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "ui5 build --clean-dest --include-task=generateManifestBundle generateCachebusterInfo",
+    "build-for-deploy": "npm run build && npm run flatten && npm run clean-after-flatten",
+    "deploy": "npm run build-for-deploy && npx nwabap upload",
+    "start": "ui5 serve --open test-resources/oup/fab/lib/common/CreateEmail.html",
+    "testsuite": "ui5 serve --open test-resources/oup/fab/lib/common/qunit/testsuite.qunit.html",
+    "test": "karma start --browsers=ChromeHeadless --singleRun=true",
+    "flatten": "cp -r dist/resources/oup/fab/lib/common/* dist && cp dist/resources/oup/fab/lib/common/.library dist",
+    "clean-after-flatten": "rm -rf dist/resources dist/test-resources"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "fiori-tools": "^1.1.3"
+  }
+}

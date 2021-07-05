@@ -1,0 +1,181 @@
+<!--
+    Copyright (C) 2009-2018 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+
+	<Dialog
+		id="createEmailDialogId"
+		title="{i18n>CreateEmail.DialogTitle}"
+		stretch="true"
+		resizable="true"
+		draggable="true"
+		class="sapUiResponsivePadding">
+
+		<content>
+			<f:SimpleForm
+				editable="true"
+				layout="ResponsiveGridLayout"
+				title=""
+				labelSpanXL="1"
+				labelSpanL="1"
+				labelSpanM="1"
+				labelSpanS="12"
+				adjustLabelSpan="true"
+				emptySpanXL="0"
+				emptySpanL="0"
+				emptySpanM="0"
+				emptySpanS="0"
+				columnsXL="1"
+				columnsL="1"
+				columnsM="1"
+				singleContainerFullSize="false">
+				<f:content>
+					<!--To Address-->
+					<Label text="{i18n>CreateEmail.To}" />
+					<Input
+						id="idTo"
+						type="Email"
+						value="{CreateEmailModel>/emailRecipients}"
+						placeholder="{i18n>CreateEmail.To.Placeholder}"
+						valueStateText="{i18n>CreateEmail.To.VSE}"
+						change=".onToChange"
+						app:InputField="Email"/>
+
+					<!--Cc Address-->
+					<Label text="{i18n>CreateEmail.Cc}" />
+					<Input
+						id="idCc"
+						type="Email"
+						value="{CreateEmailModel>/emailCcRecipients}"
+						placeholder="{i18n>CreateEmail.Cc.Placeholder}"
+						valueStateText="{i18n>CreateEmail.Cc.VSE}"
+						change=".onCcChange"
+						app:InputField="CC" />
+
+					<!--Subject-->
+					<Label text="{i18n>CreateEmail.Subject}" wrapping="false"/>
+					<Text id="idSubject" text="{CreateEmailModel>/emailSubject}" />
+				</f:content>
+			</f:SimpleForm>
+
+			<HBox alignContent="Stretch" height="100%">
+				<!--left side -->
+				<VBox
+					width="50%"
+					height="100%"
+					alignContent="Stretch"
+    				justifyContent="Center"
+					class="sapUiResponsiveContentPadding">
+					<html:iframe
+						id="emailTemplateId"
+						width="100%"
+						height="100%"
+						allowfullscreen="true"
+						class="emailTemplateIframe">
+					</html:iframe>
+				</VBox>
+
+				<!--right side -->
+				<VBox width="50%" height="100%">
+					<f:SimpleForm
+						editable="true"
+						layout="ResponsiveGridLayout"
+						title=""
+						labelSpanXL="-1"
+						labelSpanL="12"
+						labelSpanM="12"
+						labelSpanS="12"
+						adjustLabelSpan="true"
+						emptySpanXL="0"
+						emptySpanL="0"
+						emptySpanM="0"
+						emptySpanS="0"
+						columnsXL="-1"
+						columnsL="1"
+						columnsM="1"
+						maxContainerCols="1"
+						singleContainerFullSize="true" >
+						<f:content>
+							<!--Template-->
+							<Label text="{i18n>CreateEmail.Template}" />
+							<ComboBox
+								id="idTemplate"
+								items="{TemplatesModel>/}"
+								selectedKey="{CreateEmailModel>/selectedTemplateID}"
+								change=".onTemplateChange">
+								<core:Item key="{TemplatesModel>TemplateID}" text="{TemplatesModel>TemplateName}" />
+							</ComboBox>
+							<ComboBox
+								id="idTemplateLanguage"
+								items="{LanguagesModel>/}"
+								selectedKey="{CreateEmailModel>/selectedLanguage}"
+								change=".onTemplateLanguageChange">
+								<core:Item key="{LanguagesModel>Langu}" text="{LanguagesModel>Text}" />
+								<layoutData>
+									<l:GridData span="XL1 L2 M3 S12" />
+								</layoutData>
+							</ComboBox>
+
+							<!--Additional Text-->
+							<Label text="{i18n>CreateEmail.AdditionalText}" />
+							<TextArea
+								id="idAdditionalText"
+								value="{CreateEmailModel>/notes}"
+								placeholder="Enter your own text"
+								rows="8"
+								cols="20"
+								height=""
+								maxLength="0"
+								showExceededText="false"
+								wrapping="None"
+								valueLiveUpdate="false"
+								growing="false"
+								growingMaxLines="0"
+								liveChange=".onAdditionalTextLiveChange"/>
+
+							<!--Notes list-->
+							<Label text="{i18n>CreateEmail.Notes}" visible="false"/>
+							<ScrollContainer visible="false">
+								<List items="{NotesModel>/}" >
+									<CustomListItem>
+										<VBox>
+											<HBox>
+												<Text text="{NotesModel>CreatedBy}" />
+												<Text text="{NotesModel>CreatedDateTime}" />
+											</HBox>
+											<HBox>
+												<Text text="{NotesModel>NoteContent}" />
+												<Button icon="sap-icon://add" tooltip="{i18n>CreateEmail.Notes}" press=".onNotesAddPress" />
+											</HBox>
+										</VBox>
+									</CustomListItem>
+								</List>
+							</ScrollContainer>
+						</f:content>
+					</f:SimpleForm>
+				</VBox>
+			</HBox>
+		</content>
+
+		<beginButton>
+			<Button
+				type="Emphasized"
+				text="{i18n>CreateEmail.SendEmail}"
+				enabled="{CreateEmailModel>/sendEmailButtonEnable}"
+				press=".onCreateEmailDialogSendEmailPress" />
+		</beginButton>
+
+		<endButton>
+			<Button
+				text="{i18n>CreateEmail.Cancel}"
+				press=".onCreateEmailDialogCancelPress" />
+		</endButton>
+	</Dialog>
+
+</core:FragmentDefinition>
