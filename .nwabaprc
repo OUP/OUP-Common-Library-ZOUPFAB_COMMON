@@ -4,7 +4,7 @@
     "conn_server": "http://s4dbasdev110:443",
     "conn_client" : "110",
     "conn_user": "BhaskarS",
-    "conn_password": "S4D_130_q01",
+    "conn_password": "S4D_130_q02",
     "abap_package": "ZGLB",
     "abap_transport": "S4DK900146",
     "abap_bsp": "ZOUPFAB_COMMON",
